@@ -76,8 +76,7 @@ class AppAlumnos extends StatelessWidget {
     return MaterialApp(
       title: 'App Alumnos',
       debugShowCheckedModeBanner: false,
-      // NO VISTO EN CLASE (1): ColorScheme.fromSeed genera toda la paleta
-      // de Material 3 a partir de un solo color (kMorado)
+      // Tema global: así no repetimos colores en cada pantalla
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: kMorado, primary: kMorado),
@@ -107,7 +106,8 @@ class AppAlumnos extends StatelessWidget {
 // FUNCIONES DE NAVEGACIÓN reutilizables
 // ------------------------------------------------------------
 
-// Va a una ruta; si ya estamos en esa pantalla no la apila otra vez
+// NO VISTO EN CLASE (1): ModalRoute.of(context) obtiene la ruta actual;
+// si ya estamos en esa pantalla no la apila otra vez
 void irA(BuildContext context, String ruta) {
   final actual = ModalRoute.of(context)?.settings.name;
   if (actual != ruta) Navigator.pushNamed(context, ruta);
@@ -237,8 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 // ------------------------------------------------------------
-// NO VISTO EN CLASE (3): Drawer, menú lateral que se abre con el ícono ☰.
-// Al poner drawer: en el Scaffold, Flutter agrega el ícono solo
+// MENÚ LATERAL (Drawer): se abre con el ícono ☰
 // ------------------------------------------------------------
 class MenuLateral extends StatelessWidget {
   const MenuLateral({super.key});
@@ -551,7 +550,8 @@ class PerfilScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            // Stack: pone el botón de lápiz encima del avatar
+            // NO VISTO EN CLASE (3): Stack pone widgets uno encima de otro y
+            // Positioned ubica el lápiz en la esquina inferior derecha
             Stack(
               children: [
                 const CircleAvatar(
